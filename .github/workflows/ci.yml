@@ -27,9 +27,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14'
-          
+      
+      - name: Clean allure-results directory
+        run: rm -rf allure-results
+
       - name: Install dependencies
         run: npm install
+
+      - name: Run Cypress tests
+        run: npx cypress run --config-file cypress.config.js
 
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v5
