@@ -41,8 +41,9 @@ Para executar todos os testes em linha de comando, execute: `npm run headless`
 <br>Para executar todos os testes em interface cypress: `npm run intarface`
 
 ### Relatório dinâmico dos testes
-Para verificar o relatório local, execute: `npm run allure:open`
-Para verificar o relatório da última pipeline carregada, ![visite aqui](https://rafatrl.github.io/testeCypress/14/#suites).
+Para verificar o relatório local, execute: `npm run allure:open` <br>
+Para verificar o relatório da última pipeline carregada, **[visite aqui](https://rafatrl.github.io/testeCypress/14/)**.
+
 
 ## Resultado
 Resultado executado com headless: <br>
