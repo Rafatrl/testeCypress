@@ -1,5 +1,8 @@
 name: Cypress Tests
 
+permissions:
+  contents: write  # Adiciona permissão de escrita para o conteúdo
+
 on:
   push:
     branches:
@@ -27,9 +30,6 @@ jobs:
           
       - name: Install dependencies
         run: npm install
-
-      - name: Run Cypress tests
-        run: npx cypress run --config-file cypress.config.js
 
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v5
