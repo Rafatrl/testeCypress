@@ -18,29 +18,26 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BASE_URL: ${{ secrets.BASE_URL }}
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Use Node.js 20
-        uses: actions/setup-node@v3
+      - name: Use Node.js 16  # Atualizando para Node.js 16 para evitar problemas de compatibilidade
+        uses: actions/setup-node@v1
         with:
-          node-version: '20'
+          node-version: '16'
+      
+      - name: Clean allure-results directory
+        run: rm -rf allure-results
 
-      - name: Limpar e reinstalar dependências
+      - name: Clean and Install Dependencies  # Removendo arquivos antigos antes da instalação
         run: |
           rm -rf node_modules package-lock.json
           npm install
 
-      - name: Clean allure-results directory
-        run: rm -rf allure-results
-
-      - name: Run Cypress tests
-        uses: cypress-io/github-action@v5
-        with:
-          start: npm run test
-          wait-on-timeout: 60
+      - name: Run Cypress tests  # Executa os testes diretamente
+        run: npx cypress run --config-file cypress.config.js
 
       - name: Load test report history
         uses: actions/checkout@v3
