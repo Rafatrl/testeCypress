@@ -23,31 +23,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Use Node.js 14
-        uses: actions/setup-node@v1
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
         with:
-          node-version: '14'
-      
+          node-version: '18'
+
+      - name: Limpar e reinstalar dependências
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install
+
       - name: Clean allure-results directory
         run: rm -rf allure-results
 
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Reinstalar allure-cypress
-        run: |
-          rm -rf node_modules/allure-cypress
-          npm install allure-cypress@latest --save-dev
-
       - name: Run Cypress tests
-        run: npx cypress run --config-file cypress.config.js
-
-      - name: Run Cypress Tests
         uses: cypress-io/github-action@v5
         with:
-          wait-on-timeout: 60
           start: npm run test
-     
+          wait-on-timeout: 60
+
       - name: Load test report history
         uses: actions/checkout@v3
         if: always()
