@@ -33,6 +33,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+      
+      - name: Reinstalar allure-cypress
+        run: |
+          rm -rf node_modules/allure-cypress
+          npm install allure-cypress@latest --save-dev
 
       - name: Run Cypress tests
         run: npx cypress run --config-file cypress.config.js
